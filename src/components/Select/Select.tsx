@@ -13,16 +13,20 @@ const Select: React.FC<Props> = (props) => {
         [className]: true,
       })}
     >
-      <select
+      <select defaultValue={placeholder}
         name="select"
-        className="text-xs appearance-none font-inter outline-none border-none w-full font-medium text-black"
+        className="text-xs appearance-none font-inter outline-none border-none px-[2px] w-full font-medium text-black"
         onChange={onChange}
       >
-        <option value="" disabled selected>
+        <option  value={placeholder} disabled>
           {placeholder}
         </option>
         {options &&
-          options.map((option) => <option value={option}>{option}</option>)}
+          options.map((option, index) => (
+            <option key={index} onChange={onChange} value={option}>
+              {option}
+            </option>
+          ))}
       </select>
       <FaCaretDown className="absolute right-[2px]" />
     </div>

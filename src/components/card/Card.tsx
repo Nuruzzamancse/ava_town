@@ -1,17 +1,21 @@
-import React from 'react'
-import { Props } from './types'
-import classNames from 'clsx'
+import React from "react";
+import classNames from "clsx";
+
+import { Props } from "./types";
 
 const Card: React.FC<React.PropsWithChildren<Props>> = (props) => {
-    const {className = '', children} = props;
+  const { className = "", children, id } = props;
   return (
-    <div className={classNames({
+    <div
+      key={id}
+      className={classNames({
         [className]: true,
-        'bg-white': true,
-    })}>
-        {children}
+        "bg-white": true,
+      })}
+    >
+      {children}
     </div>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;

@@ -1,12 +1,14 @@
 import React from "react";
+import { HiOutlineBell, HiOutlineShoppingCart } from "react-icons/hi";
+
 import logo from "../../../assets/img/logo_avatown_manual_1_basi_inverse.png";
 import Search from "../../Search/Search";
 import Button from "../../Button/Button";
-import person from '../../../assets/img/person.png'
-import { HiOutlineBell, HiOutlineShoppingCart } from "react-icons/hi";
+import person from "../../../assets/img/person.png";
+
 const Header = () => {
   return (
-    <div className="h-[57px] w-[1280px] flex justify-between items-center px-2 mb-10 bg-gradient-to-r from-[#391c84] to-[#801f8b]">
+    <div className="h-[57px] w-[1280px] flex justify-between items-center px-2 bg-gradient-to-r from-[#391c84] to-[#801f8b]">
       <div className="flex items-center gap-14 mt-2">
         <img src={logo} alt="logo" className="h-12" />
         <a
@@ -45,7 +47,7 @@ const Header = () => {
             onClick={() => {}}
             className="h-[36px] w-[40px] flex items-center justify-center"
           >
-            <img src={person} alt='user' className="h-[32px] w-auto"/>
+            <img src={person} alt="user" className="h-[32px] w-auto" />
           </Button>
         </div>
       </div>

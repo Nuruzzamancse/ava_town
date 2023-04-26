@@ -1,18 +1,35 @@
-import React, { useState } from "react";
-import { HiHeart, HiOutlineHeart, HiOutlineShoppingCart } from "react-icons/hi";
+import React, { useState, useEffect } from "react";
+import {
+  HiHeart,
+  HiLink,
+  HiOutlineHeart,
+  HiOutlineShoppingCart,
+} from "react-icons/hi";
 
-import avatar from "../../../assets/img/VRC image A(F).png";
-import Button from "../../../components/Button/Button";
-import Card from "../../../components/card/Card";
-import CopyIcon from "../../../assets/icons/CopyIcon";
+import Button from "../../../../components/Button/Button";
+import Card from "../../../../components/card/Card";
+import CopyIcon from "../../../../assets/icons/CopyIcon";
+import { Props } from "./types";
 
-const AvatarCard = () => {
+const AvatarCard: React.FC<Props> = (props) => {
   const [isWishList, setIsWishList] = useState<boolean>(false);
+  const [isCopy, setIsCopy] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 500);
+  }, [isCopied]);
+
+  const { avatar } = props;
+  const { image, id } = avatar;
+
   const handleWishList = () => {
     setIsWishList(!isWishList);
   };
+
   return (
-    <Card className="rounded-[7.2px] w-[250px] relative">
+    <Card className="rounded-[7.2px] w-[250px] relative" key={id}>
       <div className="">
         <Button
           onClick={() => {}}
@@ -27,7 +44,7 @@ const AvatarCard = () => {
           height={250}
           width={250}
           alt="VRC A(F)"
-          src={avatar}
+          src={image}
         />
         <div className="p-[5px]">
           <h2 className="text-base font-medium">
@@ -50,7 +67,7 @@ const AvatarCard = () => {
           </div>
           <div className="flex gap-2 items-center">
             <img
-              src={avatar}
+              src="https://user-images.githubusercontent.com/63799967/234540418-a581057e-be27-4bb2-8ccb-c289b4e96f5b.png"
               alt="joe's"
               height={21}
               width={21}
@@ -70,7 +87,33 @@ const AvatarCard = () => {
               Auto upload service ready, you can use this avatar within 24
               hours.
             </p>
-            <Button onClick={()=>{}}><CopyIcon height={20.8} width={13}/></Button>
+            <div className="relative">
+              {isCopied && (
+                <p className=" text-xs px-2 py-1 absolute right-0 bottom-14 bg-black text-white rounded-full ">
+                  Copied
+                </p>
+              )}
+              {isCopy && (
+                <Button
+                  onClick={() => {
+                    setIsCopied(true);
+                  }}
+                  className="absolute right-0 bottom-7 bg-white text-[#6A6A6A] rounded-[7.2px] py-[2px] w-[106px] px-2 text-xs border !border-solid border-[#6A6A6A]"
+                >
+                  <span className="flex gap-1 items-center justify-center">
+                    <HiLink className="text-xs" />
+                    Copy Link
+                  </span>
+                </Button>
+              )}
+              <Button
+                onClick={() => {
+                  setIsCopy(!isCopy);
+                }}
+              >
+                <CopyIcon height={20.8} width={13} />
+              </Button>
+            </div>
           </div>
         </div>
       </div>

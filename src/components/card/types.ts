@@ -1,4 +1,4 @@
-export interface Props{
-    className?: string;
-    
+export interface Props {
+  className?: string;
+  id?: string | number;
 }
