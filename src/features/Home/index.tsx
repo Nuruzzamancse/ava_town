@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { avatars } from "../../assets/data/avatars";
 import Select from "../../components/Select/Select";
@@ -13,16 +13,19 @@ const Home = () => {
   const [categoryItem, setCategoryItem] = useState<string>("all");
   const [min, setMin] = useState(1);
   const [max, setMax] = useState(12);
-  const filteredAvatars = avatars.filter(
-    (avatar, index) =>
-      (avatar.category === categoryItem ||
+  useEffect(() => {
+    setMin(1);
+    setMax(12);
+  }, [categoryItem]);
+  const filteredAvatars = avatars
+    .filter(
+      (avatar, index) =>
+        avatar.category === categoryItem ||
         avatar.base === categoryItem ||
         avatar.human === categoryItem ||
-        categoryItem === "all") &&
-      index + 1 >= min &&
-      index + 1 <= max
-  );
-
+        categoryItem === "all"
+    )
+    .filter((avatar, index) => index + 1 >= min && index + 1 <= max);
   return (
     <div className="flex items-start gap-1 w-[1280px] m-auto bg-white">
       <SideNavBar
@@ -71,6 +74,7 @@ const Home = () => {
               setMax(24);
             }}
             className={min === 13 ? "bg-gray100 px-2 rounded" : ""}
+            disabled={filteredAvatars.length <= 12 ? true : false}
           >
             2
           </Button>
