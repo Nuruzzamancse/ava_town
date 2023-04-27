@@ -1,60 +1,62 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
+
 import { avatars } from "../../assets/data/avatars";
 import Button from "../../components/Button/Button";
 import Card from "../../components/card/Card";
-import AvatarCard from "../Home/components/AvatarCard/AvatarCard";
+import AvatarCard from "../Home/components/AvatarCard";
 import { description } from "./constants";
-import { Props } from "./types";
 
-const Product: React.FC<Props> = (props) => {
+const Product: React.FC = () => {
   const [quantity, setQuantity] = useState<number>(1);
-  const { id, image, category } = props;
+  const { id } = useParams();
   const increment = () => {
     setQuantity((prev) => prev + 1);
   };
   const decrement = () => {
     setQuantity((prev) => prev - 1);
   };
+  const avatar = avatars.filter(
+    (avatar) => avatar.id === parseInt(id || "0")
+  )[0];
+  if (!avatar) {
+    return <div className="bg-red-200 px-2 py-1 rounded">No Avatar Found</div>;
+  }
+  const { category, human, base, image } = avatar;
   const filteredAvatars = avatars.filter(
     (avatar) =>
-      avatar.category === category ||
-      avatar.base === category ||
-      avatar.human === category
+      avatar.category === category &&
+      avatar.base === base &&
+      avatar.human === human &&
+      avatar.id !== parseInt(id || "0")
   );
   const deliveryState = Intl.DateTimeFormat().resolvedOptions().timeZone;
   return (
-    <Card>
-      <div className="flex flex-col justify-center gap-5 mb-10">
-        <div className="flex gap-5 justify-center items-start my-5">
-          <div className="w-[270px]">
+    <Card className="m-auto max-w-[1280px]">
+      <div className="flex w-[1280px] m-auto flex-col justify-center gap-5 mb-10">
+        <div className="flex gap-5 justify-center my-5">
+          <div className="w-[260px]">
             <img
-              src="https://user-images.githubusercontent.com/63799967/234540418-a581057e-be27-4bb2-8ccb-c289b4e96f5b.png"
+              src={image}
               height={250}
               width={250}
               alt={`product${id}`}
-              className="p-2"
+              className="pl-5 pt-2"
             />
           </div>
-          <div className="w-[740px] flex flex-col gap-2">
+          <div className="w-[724px] flex flex-col gap-2">
             <h2 className="text-2xl font-medium">
               Avatar name “Avatown” -nice original avatar of Avatown
             </h2>
             <div className="flex justify-between ">
               <div className="flex gap-2 items-center">
-                <span className="text-[#F9AE3F] text-lg">
+                <span className="text-golden text-lg">
                   &#9733;&#9733;&#9733;&#9733;&#9733;
                 </span>
-                <p className="text-md font-medium text-[#6A6A6A]">
+                <p className="text-md font-medium text-gray200">
                   4.7 & 100Likes
                 </p>
               </div>
-              {/* <button className="border-none mr-1" onClick={handleWishList}>
-              {isWishList ? (
-                <HiHeart className="text-lg text-[#F84F4F]" />
-              ) : (
-                <HiOutlineHeart className="text-lg text-[#6A6A6A]" />
-              )}
-            </button> */}
             </div>
             <div className="flex gap-2 items-center">
               <img
@@ -64,13 +66,13 @@ const Product: React.FC<Props> = (props) => {
                 width={30}
                 className="rounded-full"
               />
-              <p className="text-md text-[#6A6A6A] font-medium">Avatar Joe’s</p>
+              <p className="text-md text-gray200 font-medium">Avatar Joe’s</p>
             </div>
             <h2 className="text-xl font-medium">
               <span className="text-sm">$</span> 50.00
             </h2>
             <div className="flex gap-2">
-              <span className="h-[17px] w-[17px] bg-[#3CD4F5] rounded-full"></span>
+              <span className="h-[17px] w-[17px] bg-cyan rounded-full"></span>
               <p className="text-[11px] font-medium">PC ONLY</p>
             </div>
             <div className="flex justify-between items-center">
@@ -80,9 +82,7 @@ const Product: React.FC<Props> = (props) => {
               </p>
             </div>
             <div>
-              <h4 className="font-bold bg-[#F9AE3F] px-2  inline-block">
-                Description
-              </h4>
+              <h4 className="font-bold text-md  inline-block">Description</h4>
               <p className="text-justify">{description}</p>
               <h5 className="font-medium">Features:</h5>
               <ul>
@@ -100,9 +100,9 @@ const Product: React.FC<Props> = (props) => {
             </div>
           </div>
           <div className="w-[270px] justify-self-center ">
-            <div className="w-[90%] drop-shadow-lg bg-white flex flex-col p-2 pb-5 font-medium text-[#6a6a6a] border-gray-500">
+            <div className="w-[90%] drop-shadow-lg bg-white flex flex-col p-2 pb-5 font-medium text-gray200 border-gray-500">
               <p className="self-end text-end">
-                <span className="text-[#F9AE3F] font-bold text-lg">$50.00</span>
+                <span className="text-golden font-bold text-lg">$50.00</span>
                 <br />
                 save 0%
                 <br />
@@ -120,13 +120,13 @@ const Product: React.FC<Props> = (props) => {
                 <label htmlFor="qty">Quantity</label>
                 <Button
                   disabled={quantity <= 1 ? true : false}
-                  className=" border border-[#F9AE3F] rounded px-1 !border-solid "
+                  className=" border border-golden rounded px-1 !border-solid "
                   onClick={decrement}
                 >
                   -
                 </Button>
                 <input
-                  className="w-16 appearance-none border border-solid border-[#F9AE3F] rounded text-center"
+                  className="w-16 appearance-none border border-solid border-golden rounded text-center"
                   type="number"
                   name="qty"
                   value={quantity}
@@ -135,7 +135,7 @@ const Product: React.FC<Props> = (props) => {
                 />
                 <Button
                   disabled={quantity > 10 ? true : false}
-                  className=" border border-[#F9AE3F] rounded px-1 !border-solid "
+                  className=" border border-golden rounded px-1 !border-solid "
                   onClick={increment}
                 >
                   +
@@ -143,13 +143,13 @@ const Product: React.FC<Props> = (props) => {
               </div>
               <div className="flex flex-col gap-5 justify-center items-center mt-5 ">
                 <Button
-                  className="bg-[#391c84] w-[188px] h-8 text-white rounded-full hover:border hover:border-[#391c84] hover:border-solid hover:text-[#391c84] hover:bg-white"
+                  className="bg-purple w-[188px] h-8 text-white rounded-full hover:border hover:border-purple hover:border-solid hover:text-purple hover:bg-white"
                   onClick={() => {}}
                 >
                   Add to cart
                 </Button>
                 <Button
-                  className="bg-[#391c84] w-[188px] h-8 text-white rounded-full hover:border hover:border-[#391c84] hover:border-solid hover:text-[#391c84] hover:bg-white"
+                  className="bg-purple w-[188px] h-8 text-white rounded-full hover:border hover:border-purple hover:border-solid hover:text-purple hover:bg-white"
                   onClick={() => {}}
                 >
                   Buy Now
@@ -160,11 +160,11 @@ const Product: React.FC<Props> = (props) => {
         </div>
         <>
           {filteredAvatars && (
-            <div className="flex flex-col gap-4 px-10">
-              <h4 className="bg-[#F9AE3F] self-start rounded-full px-3 font-semibold py-1">
+            <div className="flex flex-col justify-center items-center gap-4 px-10">
+              <h4 className="bg-golden rounded-full px-3 font-semibold py-1">
                 Some products you may also like
               </h4>
-              <div className="grid grid-cols-4 gap-1 items-center justify-items-stretch">
+              <div className="self-center grid grid-cols-4 gap-1 items-center">
                 {filteredAvatars.map(
                   (avatar, index) =>
                     index < 4 && <AvatarCard avatar={avatar} key={index} />

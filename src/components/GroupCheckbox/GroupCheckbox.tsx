@@ -38,8 +38,8 @@ const GroupCheckbox: React.FC<Props> = (props) => {
                     <span
                       className={`h-3 w-3 rounded-full ${
                         option === "VRChat(PCVR)"
-                          ? "ml-[2px] bg-[#3CD4F5]"
-                          : "bg-[#75DE73]"
+                          ? "ml-[2px] bg-cyan"
+                          : "bg-parrotGreen"
                       }`}
                     ></span>
                   </p>

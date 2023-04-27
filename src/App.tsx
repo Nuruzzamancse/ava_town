@@ -1,13 +1,10 @@
-import Header from "./components/layout/header/Header";
-import Home from "./features/Home";
-import Product from "./features/Product";
+
+import {RouterProvider} from 'react-router-dom'
+import Routes from './components/Routes';
 
 function App() {
   return (
-    <div className="bg-[#fafafa] m-auto w-[1280px]">
-      <Header />
-      <Product image='' category="male" id='1' />
-    </div>
+    <RouterProvider router={Routes} />
   );
 }
 

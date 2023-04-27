@@ -2,16 +2,16 @@ import { useState } from "react";
 
 import { avatars } from "../../assets/data/avatars";
 import Select from "../../components/Select/Select";
-import AvatarCard from "./components/AvatarCard/AvatarCard";
+import AvatarCard from "./components/AvatarCard";
 import { options } from "./constant";
 import SideNavBar from "./components/SideNavbar";
 
 const Home = () => {
   const [path, setPath] = useState(["All Items"]);
   const [categoryItem, setCategoryItem] = useState<string>("all");
-  
+
   return (
-    <div className="flex items-start gap-1 ">
+    <div className="flex items-start gap-1 w-[1280px] m-auto ">
       <SideNavBar
         categoryItem={categoryItem}
         setCategoryItem={setCategoryItem}
@@ -24,7 +24,7 @@ const Home = () => {
             options={options}
             placeholder="Sort by featured"
             onChange={() => {}}
-            className="w-[124px]  border border-[#6A6A6A] shadow-sm p-2 rounded-md"
+            className="w-[124px]  border border-gray200 shadow-sm p-2 rounded-md"
           ></Select>
         </div>
         <div className="grid grid-cols-4 gap-1">

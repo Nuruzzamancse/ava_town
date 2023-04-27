@@ -39,29 +39,31 @@ const AvatarCard: React.FC<Props> = (props) => {
             <HiOutlineShoppingCart /> <p>Add</p>
           </div>
         </Button>
-        <img
-          className="rounded-[7.2px]"
-          height={250}
-          width={250}
-          alt="VRC A(F)"
-          src={image}
-        />
+        <a href={`/avatars/${id}`}>
+          <img
+            className="rounded-[7.2px]"
+            height={250}
+            width={250}
+            alt="VRC A(F)"
+            src={image}
+          />
+        </a>
         <div className="p-[5px]">
           <h2 className="text-base font-medium">
             Avatar name “Avatown” -nice original avatar of Avatown
           </h2>
           <div className="flex justify-between">
             <div className="flex gap-2 items-center">
-              <span className="text-[#F9AE3F] text-[15px]">
+              <span className="text-golden text-[15px]">
                 &#9733;&#9733;&#9733;&#9733;&#9733;
               </span>
-              <p className="text-[11px] text-[#6A6A6A]">4.7 & 100Likes</p>
+              <p className="text-[11px] text-gray200">4.7 & 100Likes</p>
             </div>
             <button className="border-none mr-1" onClick={handleWishList}>
               {isWishList ? (
-                <HiHeart className="text-lg text-[#F84F4F]" />
+                <HiHeart className="text-lg text-red500" />
               ) : (
-                <HiOutlineHeart className="text-lg text-[#6A6A6A]" />
+                <HiOutlineHeart className="text-lg text-gray200" />
               )}
             </button>
           </div>
@@ -73,13 +75,15 @@ const AvatarCard: React.FC<Props> = (props) => {
               width={21}
               className="rounded-full"
             />
-            <p className="text-[10px] text-[#6A6A6A] font-medium">
+            <p className="text-[10px] text-gray200 font-medium">
               Avatar Joe’s
             </p>
           </div>
-          <h2 className="text-xl font-medium"><span className="text-sm">$</span> 50.00</h2>
+          <h2 className="text-xl font-medium">
+            <span className="text-sm">$</span> 50.00
+          </h2>
           <div className="flex gap-2">
-            <span className="h-[17px] w-[17px] bg-[#3CD4F5] rounded-full"></span>
+            <span className="h-[17px] w-[17px] bg-cyan rounded-full"></span>
             <p className="text-[11px] font-medium">PC ONLY</p>
           </div>
           <div className="flex justify-between items-center">
@@ -98,7 +102,7 @@ const AvatarCard: React.FC<Props> = (props) => {
                   onClick={() => {
                     setIsCopied(true);
                   }}
-                  className="absolute right-0 bottom-7 bg-white text-[#6A6A6A] rounded-[7.2px] py-[2px] w-[106px] px-2 text-xs border !border-solid border-[#6A6A6A]"
+                  className="absolute right-0 bottom-7 bg-white text-gray200 rounded-[7.2px] py-[2px] w-[106px] px-2 text-xs border !border-solid border-gray200"
                 >
                   <span className="flex gap-1 items-center justify-center">
                     <HiLink className="text-xs" />

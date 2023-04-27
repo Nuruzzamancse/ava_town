@@ -34,6 +34,7 @@ const SideNavBar: React.FC<Props> = (props) => {
             setCategoryItem("full");
             pathSetter(["Full avatar"]);
           }}
+          className={fullCategory?'underline underline-offset-2':''}
         >
           Full avatar
         </Button>
@@ -44,6 +45,7 @@ const SideNavBar: React.FC<Props> = (props) => {
                 setCategoryItem("human");
                 pathSetter(["Full avatar", "Human based"]);
               }}
+              className={humanCategory?'underline underline-offset-2':''}
             >
               Human Based
             </Button>
@@ -54,6 +56,7 @@ const SideNavBar: React.FC<Props> = (props) => {
                     setCategoryItem("male");
                     pathSetter(["Full avatar", "Human based", "Male"]);
                   }}
+                  className={categoryItem==='male'?'underline underline-offset-2':''}
                 >
                   Male
                 </Button>
@@ -62,6 +65,7 @@ const SideNavBar: React.FC<Props> = (props) => {
                     setCategoryItem("female");
                     pathSetter(["Full avatar", "Human based", "Female"]);
                   }}
+                  className={categoryItem==='female'?'underline underline-offset-2':''}
                 >
                   Female
                 </Button>
@@ -70,6 +74,7 @@ const SideNavBar: React.FC<Props> = (props) => {
                     setCategoryItem("unisex");
                     pathSetter(["Full avatar", "Human based", "Unisex"]);
                   }}
+                  className={categoryItem==='unisex'?'underline underline-offset-2':''}
                 >
                   Unisex
                 </Button>
@@ -84,6 +89,7 @@ const SideNavBar: React.FC<Props> = (props) => {
                     "Animal and mythical creature Based",
                   ]);
                 }}
+                
               >
                 Animal and mythical creature Based
               </Button>
