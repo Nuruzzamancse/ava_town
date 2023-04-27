@@ -75,9 +75,7 @@ const AvatarCard: React.FC<Props> = (props) => {
               width={21}
               className="rounded-full"
             />
-            <p className="text-[10px] text-gray200 font-medium">
-              Avatar Joe’s
-            </p>
+            <p className="text-[10px] text-gray200 font-medium">Avatar Joe’s</p>
           </div>
           <h2 className="text-xl font-medium">
             <span className="text-sm">$</span> 50.00
@@ -121,6 +119,7 @@ const AvatarCard: React.FC<Props> = (props) => {
           </div>
         </div>
       </div>
+      
     </Card>
   );
 };
