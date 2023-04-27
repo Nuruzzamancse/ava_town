@@ -9,6 +9,21 @@ const SideNavBar: React.FC<Props> = (props) => {
   const [isFullAvatar, setIsFulAvatar] = useState(false);
   const { pathSetter, categoryItem, setCategoryItem } = props;
 
+  const fullCategory: boolean =
+    categoryItem === "full" ||
+    categoryItem === "human" ||
+    categoryItem === "male" ||
+    categoryItem === "female" ||
+    categoryItem === "unisex" ||
+    categoryItem === "animal" ||
+    categoryItem === "robot" ||
+    categoryItem === "baseOthers";
+  const humanCategory: boolean =
+    categoryItem === "human" ||
+    categoryItem === "male" ||
+    categoryItem === "female" ||
+    categoryItem === "unisex";
+
   return (
     <div className="pl-[10px] w-[256px] mt-[9px]">
       <h4 className="font-bold text-xs">Category</h4>
@@ -22,14 +37,7 @@ const SideNavBar: React.FC<Props> = (props) => {
         >
           Full avatar
         </Button>
-        {(categoryItem === "full" ||
-          categoryItem === "human" ||
-          categoryItem === "male" ||
-          categoryItem === "female" ||
-          categoryItem === "unisex" ||
-          categoryItem === "animal" ||
-          categoryItem === "robot" ||
-          categoryItem === "baseOthers") && (
+        {fullCategory && (
           <div className="ml-2 flex flex-col items-start">
             <Button
               onClick={() => {
@@ -39,10 +47,7 @@ const SideNavBar: React.FC<Props> = (props) => {
             >
               Human Based
             </Button>
-            {(categoryItem === "human" ||
-              categoryItem === "male" ||
-              categoryItem === "female" ||
-              categoryItem === "unisex") && (
+            {humanCategory && (
               <div className="ml-2 flex flex-col items-start">
                 <Button
                   onClick={() => {

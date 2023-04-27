@@ -77,7 +77,7 @@ const AvatarCard: React.FC<Props> = (props) => {
               Avatar Joe’s
             </p>
           </div>
-          <h2 className="text-xl font-medium">$ 50.00</h2>
+          <h2 className="text-xl font-medium"><span className="text-sm">$</span> 50.00</h2>
           <div className="flex gap-2">
             <span className="h-[17px] w-[17px] bg-[#3CD4F5] rounded-full"></span>
             <p className="text-[11px] font-medium">PC ONLY</p>
