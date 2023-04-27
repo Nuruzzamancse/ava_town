@@ -14,13 +14,13 @@ const Home = () => {
   const [min, setMin] = useState(1);
   const [max, setMax] = useState(12);
   const filteredAvatars = avatars.filter(
-    (avatar,index) =>
+    (avatar, index) =>
       (avatar.category === categoryItem ||
-      avatar.base === categoryItem ||
-      avatar.human === categoryItem ||
-      categoryItem === "all") &&
-      index+1>=min &&
-      index+1<=max
+        avatar.base === categoryItem ||
+        avatar.human === categoryItem ||
+        categoryItem === "all") &&
+      index + 1 >= min &&
+      index + 1 <= max
   );
 
   return (
@@ -61,7 +61,7 @@ const Home = () => {
               setMin(1);
               setMax(min + 11);
             }}
-            className={min===1?'bg-gray100 px-2 rounded':''}
+            className={min === 1 ? "bg-gray100 px-2 rounded" : ""}
           >
             1
           </Button>
@@ -70,7 +70,7 @@ const Home = () => {
               setMin(13);
               setMax(24);
             }}
-            className={min===13?'bg-gray100 px-2 rounded':''}
+            className={min === 13 ? "bg-gray100 px-2 rounded" : ""}
           >
             2
           </Button>
@@ -79,7 +79,7 @@ const Home = () => {
               setMin(min + 12);
               setMax(max + 12);
             }}
-            disabled={filteredAvatars.length<max? true : false}
+            disabled={filteredAvatars.length < max ? true : false}
           >
             <FaAngleRight />
           </Button>
