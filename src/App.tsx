@@ -1,11 +1,10 @@
-import React from "react";
-import AvatarCard from "./features/Home/AvatarCard/AvatarCard";
+
+import {RouterProvider} from 'react-router-dom'
+import Routes from './components/Routes';
 
 function App() {
   return (
-    <div className="bg-[#fafafa]">
-      <AvatarCard></AvatarCard>
-    </div>
+    <RouterProvider router={Routes} />
   );
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div>Footer</div>
+    <div className='bg-purple py-2 text-white text-center mt-5' >Copyright © 2023 Avatown</div>
   )
 }
 
