@@ -13,10 +13,12 @@ const Home = () => {
   const [categoryItem, setCategoryItem] = useState<string>("all");
   const [min, setMin] = useState(1);
   const [max, setMax] = useState(12);
+
   useEffect(() => {
     setMin(1);
     setMax(12);
   }, [categoryItem]);
+
   const filteredAvatars = avatars
     .filter(
       (avatar, index) =>
@@ -49,45 +51,47 @@ const Home = () => {
               <AvatarCard avatar={avatar} key={index} />
             ))}
         </div>
-        <div className="flex gap-2 justify-center py-4 items-center">
-          <Button
-            onClick={() => {
-              setMin(min - 12);
-              setMax(max - 12);
-            }}
-            disabled={min <= 1 ? true : false}
-          >
-            <FaAngleLeft />
-          </Button>
-          <Button
-            onClick={() => {
-              setMin(1);
-              setMax(min + 11);
-            }}
-            className={min === 1 ? "bg-gray100 px-2 rounded" : ""}
-          >
-            1
-          </Button>
-          <Button
-            onClick={() => {
-              setMin(13);
-              setMax(24);
-            }}
-            className={min === 13 ? "bg-gray100 px-2 rounded" : ""}
-            disabled={filteredAvatars.length <= 12 ? true : false}
-          >
-            2
-          </Button>
-          <Button
-            onClick={() => {
-              setMin(min + 12);
-              setMax(max + 12);
-            }}
-            disabled={filteredAvatars.length < max ? true : false}
-          >
-            <FaAngleRight />
-          </Button>
-        </div>
+        {filteredAvatars.length>0 ? (
+          <div className="flex gap-2 justify-center py-4 items-center">
+            <Button
+              onClick={() => {
+                setMin(min - 12);
+                setMax(max - 12);
+              }}
+              disabled={min <= 1 ? true : false}
+            >
+              <FaAngleLeft />
+            </Button>
+            <Button
+              onClick={() => {
+                setMin(1);
+                setMax(min + 11);
+              }}
+              className={min === 1 ? "bg-gray100 px-2 rounded" : ""}
+            >
+              1
+            </Button>
+            <Button
+              onClick={() => {
+                setMin(13);
+                setMax(24);
+              }}
+              className={min === 13 ? "bg-gray100 px-2 rounded" : ""}
+              disabled={filteredAvatars.length <= 12 ? true : false}
+            >
+              2
+            </Button>
+            <Button
+              onClick={() => {
+                setMin(min + 12);
+                setMax(max + 12);
+              }}
+              disabled={filteredAvatars.length < max ? true : false}
+            >
+              <FaAngleRight />
+            </Button>
+          </div>
+        ):<p className="bg-red-200 text-center rounded w-[95%] m-auto">No Data Found</p>}
       </div>
     </div>
   );
